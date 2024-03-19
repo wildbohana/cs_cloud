@@ -6,18 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-// TODO ovo rešenje ne koristi Table
-// Napraviti ga tako da koristi Table
-
 namespace JobWorker
 {
     public class StudentServerProvider : IStudent
     {
-        private List<Student> students;
+        private StudentDataRepository repo;
 
         public StudentServerProvider()
         {
-            students = new List<Student>();
+            repo = new StudentDataRepository();
         }
 
         public void AddStudent(string indexNo, string name, string lastName)
@@ -25,12 +22,13 @@ namespace JobWorker
             Student s = new Student(indexNo);
             s.Name = name;
             s.LastName = lastName;
-            students.Add(s);
+
+            repo.AddStudent(s);
         }
 
         public List<Student> RetrieveAllStudents()
         {
-            return students;
+            return repo.RetrieveAllStudents().ToList();
         }
     }
 }

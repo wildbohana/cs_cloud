@@ -16,10 +16,10 @@ namespace StudentService_Data
 
         public StudentDataRepository()
         {
-            _storageAccount =
-            CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("DataConnectionString"));
-            CloudTableClient tableClient = new CloudTableClient(new
-            Uri(_storageAccount.TableEndpoint.AbsoluteUri), _storageAccount.Credentials);
+            _storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("DataConnectionString"));
+            CloudTableClient tableClient = new CloudTableClient(new Uri(_storageAccount.TableEndpoint.AbsoluteUri), _storageAccount.Credentials);
+            
+            // TODO ovde puca ???
             _table = tableClient.GetTableReference("StudentTable");
             _table.CreateIfNotExists();
         }
